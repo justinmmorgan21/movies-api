@@ -1,6 +1,5 @@
 import sqlite3
 
-
 def connect_to_db():
     conn = sqlite3.connect("database.db")
     conn.row_factory = sqlite3.Row
@@ -47,3 +46,13 @@ def initial_setup():
 
 if __name__ == "__main__":
     initial_setup()
+
+# INDEX
+def movies_all():
+    conn = connect_to_db()
+    rows = conn.execute(
+        """
+        SELECT * FROM movies
+        """
+    ).fetchall()
+    return [dict(row) for row in rows]
