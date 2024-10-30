@@ -56,3 +56,18 @@ def movies_all():
         """
     ).fetchall()
     return [dict(row) for row in rows]
+
+# CREATE
+def movies_create(name, year, genre):
+    conn = connect_to_db()
+    row = conn.execute(
+        """
+        INSERT INTO movies (name, year, genre)
+        VALUES (?, ?, ?)
+        RETURNING *
+        """,
+        (name, year, genre),
+    ).fetchone()
+    conn.commit()
+    return dict(row)
+
