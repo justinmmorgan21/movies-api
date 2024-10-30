@@ -71,3 +71,14 @@ def movies_create(name, year, genre):
     conn.commit()
     return dict(row)
 
+# SHOW 
+def movies_find_by_id(id):
+    conn = connect_to_db()
+    row = conn.execute(
+        """
+        SELECT * FROM movies
+        WHERE id = ?
+        """,
+        (id,),
+    ).fetchone()
+    return dict(row)

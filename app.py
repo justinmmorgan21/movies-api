@@ -18,3 +18,8 @@ def create():
     year = request.form.get("year")
     genre = request.form.get("genre")
     return db.movies_create(name, year, genre)
+
+@app.route("/movies/<id>.json")
+def show(id):
+    return db.movies_find_by_id(id)
+
