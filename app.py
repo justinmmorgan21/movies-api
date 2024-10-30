@@ -29,3 +29,7 @@ def update(id):
     year = request.form.get("year")
     genre = request.form.get("genre")
     return db.movies_update_by_id(id, name, year, genre)
+
+@app.route("/movies/<id>.json", methods=["DELETE"])
+def destroy(id):
+    return db.movies_destroy_by_id(id)

@@ -108,3 +108,17 @@ def movies_update_by_id(id, name, year, genre):
     ).fetchone()
     conn.commit()
     return dict(row)
+
+# DESTROY
+def movies_destroy_by_id(id):
+    conn = connect_to_db()
+    row = conn.execute(
+        """
+        DELETE from movies
+        WHERE id = ?
+        """,
+        (id,),
+    ).fetchone()
+    conn.commit()
+    return {"Message ": "Movie was deleted."}
+    
